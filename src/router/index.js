@@ -4,10 +4,14 @@ import ErrorPage from "../pages/ErrorPage";
 import ProfilePage from "../pages/ProfilePage";
 import CreateReportPage from "../pages/CreateReportPage";
 import ReportDetailsPage from "../pages/ReportDetailsPage";
+import ForgotPasswordPage from "../pages/ForgotPasswordPage";
+import ActivateNewPasswordPage from "../pages/ActivateNewPasswordPage";
 
 const PUBLIC_ROUTES = [
   { path: "/", element: <LoginPage /> },
   { path: "signup", element: <SignUpPage /> },
+  { path: "forgotPassword", element: <ForgotPasswordPage /> },
+  { path: "activateNewPassword/:link", element: <ActivateNewPasswordPage /> },
   { path: "*", element: <ErrorPage /> },
 ];
 

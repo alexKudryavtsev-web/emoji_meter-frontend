@@ -1,7 +1,13 @@
+import { Flex } from "@chakra-ui/react";
 import React from "react";
+import SignUp from "../components/signUp/SignUp";
 
-function SignUp() {
-  return <div>SignUp</div>;
+function SignUpPage() {
+  return (
+    <Flex justify={"center"}>
+      <SignUp />
+    </Flex>
+  );
 }
 
-export default SignUp;
+export default SignUpPage;
