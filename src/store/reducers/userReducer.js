@@ -24,8 +24,7 @@ const userSlice = createSlice({
       state.user = action.payload.user;
       state.isAuth = true;
     });
-    builder.addCase(logout.fulfilled, (state) => {
-      console.log(state.user);
+    builder.addCase(logout.fulfilled, (state, action) => {
       state.isAuth = false;
       state.user = {};
       console.log(state.user);

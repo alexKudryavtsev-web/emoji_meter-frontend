@@ -26,11 +26,23 @@ function Header() {
       <Heading size="lg">emoji meter</Heading>
       <Spacer />
       {isAuth ? (
-        <Link to="/">
-          <Button variant="ghost" onClick={logoutHandler} colorScheme="green">
-            log out
-          </Button>
-        </Link>
+        <>
+          <Link to="/">
+            <Button variant="ghost" colorScheme="blue">
+              profile
+            </Button>
+          </Link>
+          <Link to="create">
+            <Button variant="ghost" colorScheme="green">
+              create
+            </Button>
+          </Link>
+          <Link to="/">
+            <Button variant="ghost" onClick={logoutHandler} colorScheme="red">
+              log out
+            </Button>
+          </Link>
+        </>
       ) : (
         <>
           <Link to="/">

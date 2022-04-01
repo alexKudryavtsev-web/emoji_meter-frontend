@@ -1,7 +1,12 @@
 import React from "react";
-
-function CreateReport() {
-  return <div>CreateReport</div>;
+import { Flex } from "@chakra-ui/react";
+import CreateReport from "../components/createReport/CreateReport";
+function CreateReportPage() {
+  return (
+    <Flex justify="center">
+      <CreateReport />
+    </Flex>
+  );
 }
 
-export default CreateReport;
+export default CreateReportPage;
