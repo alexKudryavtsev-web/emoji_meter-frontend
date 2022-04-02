@@ -33,7 +33,7 @@ $api.interceptors.response.use(
         console.log(e);
       }
     }
-    throw error;
+    throw new Error(error.response.data.message);
   }
 );
 

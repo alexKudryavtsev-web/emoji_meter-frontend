@@ -1,3 +1,3 @@
 export default function getRecords(state) {
-  return state?.records?.records;
+  return state.records?.records || [];
 }

@@ -5,10 +5,13 @@ import PasswordInput from "../ui/passwordInput/PasswordInput";
 import store from "../../store";
 import { login } from "../../store/reducers/userReducer";
 import { Link as RouterLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import getUserLoginError from "../../store/selector/getUserLoginError";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const errorMessage = useSelector(getUserLoginError);
 
   function loginBtnHandler() {
     store.dispatch(login({ email, password }));
@@ -41,6 +44,11 @@ function Login() {
           forgot your password?
         </Link>
       </Flex>
+      <Box>
+        <Heading color="red" size="xs" textAlign="center">
+          {errorMessage}
+        </Heading>
+      </Box>
     </VStack>
   );
 }

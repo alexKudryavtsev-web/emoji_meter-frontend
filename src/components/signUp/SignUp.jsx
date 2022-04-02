@@ -1,16 +1,21 @@
 import { Box, Button, Heading, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
-import AuthService from "../../services/AuthService";
+import { useSelector } from "react-redux";
 import EmailInput from "../ui/emailInput/EmailInput";
 import PasswordInput from "../ui/passwordInput/PasswordInput";
+import getUserSignUpError from "../../store/selector/getUserSignUpError";
+import ErrorAlert from "../ui/errorAlert/ErrorAlert";
+import store from "../../store";
+import { signUp } from "../../store/reducers/userReducer";
 
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSendEmail, setIsSendEmail] = useState(false);
+  const errorMessage = useSelector(getUserSignUpError);
 
   async function signUpBtnHandler() {
-    await AuthService.registration(email, password);
+    store.dispatch(signUp({ email, password }));
     setIsSendEmail(true);
   }
 
@@ -36,8 +41,9 @@ function SignUp() {
           sing up
         </Button>
       </Box>
+      <ErrorAlert message={errorMessage} />
       <Box>
-        {isSendEmail && (
+        {isSendEmail && !errorMessage && (
           <Heading size="xs">Letter sent to email {email}</Heading>
         )}
       </Box>

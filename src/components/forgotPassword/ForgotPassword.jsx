@@ -1,14 +1,19 @@
 import { Box, Button, Flex, Heading, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
-import AuthService from "../../services/AuthService";
+import { useSelector } from "react-redux";
+import store from "../../store";
+import { resetPassword } from "../../store/reducers/userReducer";
 import EmailInput from "../ui/emailInput/EmailInput";
+import getUserResetPasswordError from "../../store/selector/getUserResetPasswordError";
+import ErrorAlert from "../ui/errorAlert/ErrorAlert";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [isSend, setIsSend] = useState(false);
+  const errorMessage = useSelector(getUserResetPasswordError);
 
   async function sendConfirmationEmail() {
-    await AuthService.resetPassword(email);
+    store.dispatch(resetPassword({ email }));
     setIsSend(true);
   }
 
@@ -31,7 +36,8 @@ function ForgotPassword() {
           send a confirmation email
         </Button>
       </Flex>
-      {isSend && (
+      <ErrorAlert message={errorMessage} />
+      {isSend && !errorMessage && (
         <Box>
           <Heading size="xs">Letter sent to email {email}</Heading>
         </Box>

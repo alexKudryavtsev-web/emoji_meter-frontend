@@ -6,19 +6,24 @@ const initialState = {
 };
 
 const createRecord = createAsyncThunk(
-  "records/createRecord",
+  "records/createReport",
   async (payload) => {
     return await RecordsService.createReport(payload.emojis, payload.comment);
   }
 );
 
-const readRecords = createAsyncThunk("records/readRecords", async () => {
+const readRecords = createAsyncThunk("records/readReports", async () => {
   return await RecordsService.readRecords();
 });
 
 const recordsSlice = createSlice({
   name: "records",
   initialState,
+  reducers: {
+    clearReports(state) {
+      state.records = [];
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(createRecord.fulfilled, (state, action) => {
       state.records.unshift(action.payload);
@@ -26,10 +31,10 @@ const recordsSlice = createSlice({
     builder.addCase(readRecords.fulfilled, (state, action) => {
       const emojisArr = action.payload.reverse();
       state.records.push(...emojisArr);
-      state.hasLoaded = true;
     });
   },
 });
 
 export default recordsSlice.reducer;
+export const { clearReports } = recordsSlice.actions;
 export { createRecord, readRecords };

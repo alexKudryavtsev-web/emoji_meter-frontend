@@ -7,12 +7,14 @@ import { logout } from "../../store/reducers/userReducer";
 import getIsAuth from "../../store/selector/getIsAuth";
 import { AiOutlineUser, AiFillEdit } from "react-icons/ai";
 import { BiExit } from "react-icons/bi";
+import { clearReports } from "../../store/reducers/recordsReducer";
 
 function Header() {
   const isAuth = useSelector(getIsAuth);
 
   async function logoutHandler() {
     store.dispatch(logout());
+    store.dispatch(clearReports());
   }
 
   return (
