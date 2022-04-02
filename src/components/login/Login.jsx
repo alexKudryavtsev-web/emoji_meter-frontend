@@ -7,8 +7,8 @@ import { login } from "../../store/reducers/userReducer";
 import { Link as RouterLink } from "react-router-dom";
 
 function Login() {
-  const [email, setEmail] = useState("qwertyshurazh@gmail.com");
-  const [password, setPassword] = useState("1488");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   function loginBtnHandler() {
     store.dispatch(login({ email, password }));

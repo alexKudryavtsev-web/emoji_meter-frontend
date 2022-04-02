@@ -10,7 +10,9 @@ function Profile() {
   const records = useSelector(getRecords);
 
   useEffect(() => {
-    store.dispatch(readRecords());
+    if (records.length === 0) {
+      store.dispatch(readRecords());
+    }
   }, []);
 
   return (

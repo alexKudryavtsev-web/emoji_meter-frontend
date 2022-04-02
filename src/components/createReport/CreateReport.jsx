@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Flex,
@@ -34,13 +34,8 @@ function CreateReport() {
     store.dispatch(createRecord({ emojis, comment }));
 
     setInputEmojis([]);
-    setComment(" ");
+    setComment("");
   }
-
-  useEffect(() => {
-    console.log(inputEmojis);
-  }, [inputEmojis]);
-
   return (
     <VStack>
       <Box>
@@ -48,10 +43,13 @@ function CreateReport() {
       </Box>
       <HStack>
         {inputEmojis.map((emoji, index) => (
-          <Tooltip hasArrow label="You can click on an emoji and delete it">
+          <Tooltip
+            hasArrow
+            key={index}
+            label="You can click on an emoji and delete it"
+          >
             <Box
               cursor="pointer"
-              key={index}
               onClick={() => removeEmoji(index)}
               fontSize="1.5em"
             >

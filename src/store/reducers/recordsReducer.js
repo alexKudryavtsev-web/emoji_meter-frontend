@@ -26,6 +26,7 @@ const recordsSlice = createSlice({
     builder.addCase(readRecords.fulfilled, (state, action) => {
       const emojisArr = action.payload.reverse();
       state.records.push(...emojisArr);
+      state.hasLoaded = true;
     });
   },
 });

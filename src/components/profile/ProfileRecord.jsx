@@ -10,7 +10,7 @@ function ProfileRecord({ emojis, comment, date }) {
         <Flex wrap="wrap" maxWidth="75vw" flex={1} p={2}>
           <Heading size="lg">{emojis}</Heading>
         </Flex>
-        <Box>{comment}</Box>
+        <Box textAlign="end">{comment}</Box>
       </Flex>
       <Divider />
     </>
